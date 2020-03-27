@@ -1,6 +1,8 @@
 package tree;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 import static java.util.Arrays.asList;
@@ -16,7 +18,33 @@ public class MaximumDepth_104 {
         System.out.println(new MaximumDepth_104().maxDepth(tree(asList(3, 9, 20, null, null, 15, 7), 0)));
     }
 
+
     public int maxDepth(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        Queue<TreeNode> values = new LinkedList<>();
+        int count = 0;
+
+        values.offer(root);
+
+        while (!values.isEmpty()) {
+            int size = values.size();
+            while (size-- > 0) {
+                TreeNode node = values.poll();
+                if(node.left != null)
+                    values.offer(node.left);
+
+                if(node.right != null)
+                    values.offer(node.right);
+            }
+            count++;
+        }
+
+        return count;
+    }
+
+    public int maxDepthDfs(TreeNode root) {
         if (root == null)
             return 0;
 
