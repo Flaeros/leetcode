@@ -18,18 +18,15 @@ public class SubtractAnInteger_1281 {
         if (n < 10)
             return 0;
 
-        int temp = n;
         int product = 1;
         int sum = 0;
 
-        while(temp >= 10) {
-            int digit = temp % 10;
+        while(n > 0) {
+            int digit = n % 10;
             product = product * digit;
             sum = sum + digit;
-            temp = temp / 10;
+            n /= 10;
         }
-        product = product * temp;
-        sum = sum + temp;
 
         return product - sum;
     }
