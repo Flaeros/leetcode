@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.List;
+import java.util.Stack;
 
 import static java.util.Arrays.asList;
 
@@ -19,8 +20,38 @@ public class MaximumDepth_104 {
         if (root == null)
             return 0;
 
-        int leftDepth = root.left == null ? 0 : maxDepth(root.left);
-        int rightDepth = root.right == null ? 0 : maxDepth(root.right);
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<Integer> values = new Stack<>();
+
+        int max = 0;
+        stack.push(root);
+        values.push(1);
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            Integer temp = values.pop();
+            max = Math.max(temp, max);
+
+            if (node.left != null) {
+                stack.push(node.left);
+                values.push(temp + 1);
+            }
+
+            if (node.right != null) {
+                stack.push(node.right);
+                values.push(temp + 1);
+            }
+        }
+
+        return max;
+    }
+
+    public int maxDepthRec(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        int leftDepth = root.left == null ? 0 : maxDepthRec(root.left);
+        int rightDepth = root.right == null ? 0 : maxDepthRec(root.right);
 
         if (leftDepth > rightDepth)
             return leftDepth + 1;
