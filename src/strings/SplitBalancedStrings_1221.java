@@ -21,24 +21,14 @@ public class SplitBalancedStrings_1221 {
         if (s.length() % 2 != 0)
             return 0;
 
-        int ls = 0;
-        int rs = 0;
         int count = 0;
-        for (char c : s.toCharArray()) {
-            if (c == 'L')
-                ls++;
-            if (c == 'R')
-                rs++;
+        int balance = 0;
 
-            if (ls == rs && ls != 0 && rs != 0) {
+        for (int i = 0; i < s.length(); i++) {
+            balance += s.charAt(i) == 'L' ? 1 : -1;
+            if (balance == 0)
                 count++;
-                ls = 0;
-                rs = 0;
-            }
         }
-
-        if (ls > 0 || rs > 0)
-            return 0;
 
         return count;
     }
