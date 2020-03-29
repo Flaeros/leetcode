@@ -15,7 +15,7 @@ import static java.util.Arrays.asList;
 public class MaximumDepth_104 {
 
     public static void main(String[] args) {
-        System.out.println(new MaximumDepth_104().maxDepth(tree(asList(3, 9, 20, null, null, 15, 7), 0)));
+        System.out.println(new MaximumDepth_104().maxDepth(TreeNode.tree(asList(3, 9, 20, null, null, 15, 7), 0)));
     }
 
 
@@ -84,36 +84,6 @@ public class MaximumDepth_104 {
         if (leftDepth > rightDepth)
             return leftDepth + 1;
         return rightDepth + 1;
-    }
-
-    public static class TreeNode {
-        int val;
-        public TreeNode left;
-        public TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
-    static TreeNode tree(List<Integer> tree, int i) {
-        if (tree.isEmpty())
-            return null;
-
-        TreeNode node = null;
-
-        if (i < tree.size()) {
-            Integer val = tree.get(i);
-            if (val == null)
-                return null;
-
-            node = new TreeNode(val);
-
-            node.left = tree(tree, 2 * i + 1);
-            node.right = tree(tree, 2 * i + 2);
-        }
-
-        return node;
     }
 
     static TreeNode tree2(List<Integer> tree) {
