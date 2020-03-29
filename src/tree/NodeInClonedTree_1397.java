@@ -25,6 +25,18 @@ public class NodeInClonedTree_1397 {
     }
 
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
+        if (original == null || cloned == null)
+            return null;
+        if (cloned.val == target.val)
+            return cloned;
+        TreeNode res = getTargetCopy(original.left, cloned.left, target);
+        if (res != null) {
+            return res;
+        }
+        return getTargetCopy(original.right, cloned.right, target);
+    }
+
+    public final TreeNode getTargetCopyBfs(final TreeNode original, final TreeNode cloned, final TreeNode target) {
         Queue<TreeNode> nodes = new LinkedList<>();
         Queue<List<Integer>> routes = new LinkedList<>();
         nodes.offer(original);
