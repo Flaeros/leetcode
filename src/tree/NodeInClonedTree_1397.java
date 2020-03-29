@@ -25,9 +25,9 @@ public class NodeInClonedTree_1397 {
     }
 
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        if (original == null || cloned == null)
+        if (original == null)
             return null;
-        if (cloned.val == target.val)
+        if (original == target)
             return cloned;
         TreeNode res = getTargetCopy(original.left, cloned.left, target);
         if (res != null) {
