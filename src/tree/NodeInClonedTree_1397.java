@@ -25,6 +25,46 @@ public class NodeInClonedTree_1397 {
     }
 
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
+        Queue<TreeNode> nodes = new LinkedList<>();
+        Queue<List<Integer>> routes = new LinkedList<>();
+        nodes.offer(original);
+        routes.offer(new ArrayList<>());
+        List<Integer> finalRoute = new ArrayList<>();
+
+        while (!nodes.isEmpty()) {
+            TreeNode currentNode = nodes.poll();
+            List<Integer> route = routes.poll();
+
+            if (currentNode.val == target.val) {
+                finalRoute = route;
+                break;
+            }
+
+            if (currentNode.left != null) {
+                nodes.offer(currentNode.left);
+                ArrayList<Integer> newRoute = new ArrayList<>(route);
+                newRoute.add(0);
+                routes.offer(newRoute);
+            }
+            if (currentNode.right != null) {
+                nodes.offer(currentNode.right);
+                ArrayList<Integer> newRoute = new ArrayList<>(route);
+                newRoute.add(1);
+                routes.offer(newRoute);
+            }
+        }
+
+        TreeNode current = cloned;
+        for (Integer route : finalRoute) {
+            if (route == 0)
+                current = current.left;
+            else
+                current = current.right;
+        }
+        return current;
+    }
+
+    public final TreeNode getTargetCopyRecursive(final TreeNode original, final TreeNode cloned, final TreeNode target) {
         List<Integer> path;
 
         path = findNode(original, target.val);
