@@ -18,7 +18,6 @@ public class MaximumDepth_104 {
         System.out.println(new MaximumDepth_104().maxDepth(TreeNode.tree(asList(3, 9, 20, null, null, 15, 7), 0)));
     }
 
-
     public int maxDepth(TreeNode root) {
         if (root == null)
             return 0;
