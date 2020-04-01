@@ -12,7 +12,6 @@ public class NumbersOfEvenDigits_1295 {
     public static void main(String[] args) {
         System.out.println(new NumbersOfEvenDigits_1295().findNumbers(new int[]{12,345,2,6,7896}));
         System.out.println(new NumbersOfEvenDigits_1295().findNumbers(new int[]{555,901,482,1771}));
-
     }
 
     public int findNumbers(int[] nums) {
