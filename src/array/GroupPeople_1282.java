@@ -33,30 +33,19 @@ public class GroupPeople_1282 {
     }
 
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
-        Map<Integer, List<List<Integer>>> groupBySize = new HashMap<>();
+        List<List<Integer> > result = new ArrayList<>();
+        Map<Integer, List<Integer>> groupBySize = new HashMap<>();
         for (int i = 0; i < groupSizes.length; i++) {
             int personIndex = i;
             int groupSize = groupSizes[i];
 
-            List<List<Integer>> groupList;
-            groupList = groupBySize.computeIfAbsent(groupSize, k -> new ArrayList<>());
-
-            if (groupList.isEmpty()) {
-                ArrayList<Integer> group = new ArrayList<>();
-                group.add(personIndex);
-                groupList.add(group);
-            } else {
-                Optional<List<Integer>> anyGroup = groupList.stream().filter(e -> e.size() < groupSize).findAny();
-                if (anyGroup.isPresent()) {
-                    anyGroup.get().add(personIndex);
-                } else {
-                    List<Integer> group = new ArrayList<>();
-                    group.add(personIndex);
-                    groupList.add(group);
-                }
+            List<Integer> groupList = groupBySize.computeIfAbsent(groupSize, k -> new ArrayList<>());
+            groupList.add(personIndex);
+            if (groupList.size() == groupSize) {
+                result.add(groupList);
+                groupBySize.put(groupSize, new ArrayList<>());
             }
         }
-
-        return groupBySize.values().stream().flatMap(List::stream).collect(Collectors.toList());
+        return result;
     }
 }
