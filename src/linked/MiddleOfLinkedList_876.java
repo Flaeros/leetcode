@@ -24,19 +24,13 @@ public class MiddleOfLinkedList_876 {
     }
 
     public ListNode middleNode(ListNode head) {
-        if (head.next == null)
-            return head;
 
-        ListNode slow = head;
-        ListNode fast = head.next.next;
-        while (fast != null) {
-            if (fast.next == null) {
-                break;
-            }
-            fast = fast.next.next;
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
             slow = slow.next;
+            fast = fast.next.next;
         }
 
-        return slow.next;
+        return slow;
     }
 }
