@@ -34,6 +34,22 @@ public class MinimumPathSum_64 {
 
     }
 
+    public int minPathSum(int[][] grid) {
+        int height = grid.length;
+        if (grid == null || height == 0) return 0;
+        int breadth = grid[0].length;
+        int[][] dp = new int[height][breadth];
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (i == 0 && j == 0) dp[i][j] = grid[i][j];
+                else if (i == 0) dp[i][j] = grid[i][j] + dp[i][j - 1];
+                else if (j == 0) dp[i][j] = grid[i][j] + dp[i - 1][j];
+                else dp[i][j] = grid[i][j] + Math.min(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+        return dp[height - 1][breadth - 1];
+    }
 
     int breadth;
     int height;
@@ -41,7 +57,7 @@ public class MinimumPathSum_64 {
 
     Map<Coords, Integer> cache = new HashMap<>();
 
-    public int minPathSum(int[][] grid) {
+    public int minPathSumCached(int[][] grid) {
 
         breadth = grid[0].length;
         height = grid.length;
