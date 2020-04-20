@@ -11,6 +11,11 @@ public class TreeNode {
         val = x;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(val);
+    }
+
     public static TreeNode tree(List<Integer> tree, int i) {
         if (tree.isEmpty())
             return null;
