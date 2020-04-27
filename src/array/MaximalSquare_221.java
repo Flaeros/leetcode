@@ -2,16 +2,16 @@ package array;
 
 import java.util.Arrays;
 
-public class MaximalSquare {
+public class MaximalSquare_221 {
 
     public static void main(String[] args) {
-        System.out.println(new MaximalSquare().maximalSquare(new char[][]{
+        System.out.println(new MaximalSquare_221().maximalSquare(new char[][]{
                 {'1', '0', '1', '0', '0'},
                 {'1', '0', '1', '1', '1'},
                 {'1', '1', '1', '1', '1'},
                 {'1', '0', '0', '1', '0'}
         }));
-        System.out.println(new MaximalSquare().maximalSquare(new char[][]{
+        System.out.println(new MaximalSquare_221().maximalSquare(new char[][]{
                 {'0', '0', '0', '1'},
                 {'1', '1', '0', '1'},
                 {'1', '1', '1', '1'},
@@ -19,9 +19,9 @@ public class MaximalSquare {
                 {'0', '1', '1', '1'}
         }));
 
-        System.out.println(new MaximalSquare().maximalSquare(new char[][]{{}}));
-        System.out.println(new MaximalSquare().maximalSquare(new char[][]{{'0'}}));
-        System.out.println(new MaximalSquare().maximalSquare(new char[][]{{'1'}}));
+        System.out.println(new MaximalSquare_221().maximalSquare(new char[][]{{}}));
+        System.out.println(new MaximalSquare_221().maximalSquare(new char[][]{{'0'}}));
+        System.out.println(new MaximalSquare_221().maximalSquare(new char[][]{{'1'}}));
     }
 
     public int maximalSquare(char[][] matrix) {
