@@ -16,6 +16,10 @@ public class TreeNode {
         return String.valueOf(val);
     }
 
+    public static TreeNode tree(List<Integer> tree) {
+        return tree(tree, 0);
+    }
+
     public static TreeNode tree(List<Integer> tree, int i) {
         if (tree.isEmpty())
             return null;
