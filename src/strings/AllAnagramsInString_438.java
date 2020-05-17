@@ -30,11 +30,11 @@ public class AllAnagramsInString_438 {
 
         int count = p.length();
         for (int i = 0; i < slen; i++) {
-            if ( pmemo[s.charAt(i) - 'a']-- >=1)
+            if (pmemo[s.charAt(i) - 'a']-- >= 1)
                 count--;
 
             if (i >= plen) {
-                if (pmemo[s.charAt(i - plen) - 'a']++  >=0)
+                if (pmemo[s.charAt(i - plen) - 'a']++ >= 0)
                     count++;
             }
 
