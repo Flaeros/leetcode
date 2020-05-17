@@ -1,7 +1,6 @@
 package strings;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,23 +28,26 @@ public class AllAnagramsInString_438 {
             pmemo[p.charAt(i) - 'a']++;
         }
 
-        for (int i = 0; i <= slen - plen; i++) {
-            if (isAnagram(s, i, i + plen, Arrays.copyOf(pmemo, 26)))
-                result.add(i);
+        for (int i = 0; i < slen; i++) {
+            pmemo[s.charAt(i) - 'a']--;
+            if (i >= plen) {
+                pmemo[s.charAt(i - plen) - 'a']++;
+            }
+            if (i >= plen - 1) {
+                if (empty(pmemo))
+                    result.add(i + 1 - plen);
+            }
         }
 
         return result;
     }
 
-    private boolean isAnagram(String s, int start, int end, int[] memo) {
-        for (int i = start; i < end; i++) {
-            memo[s.charAt(i) -'a']--;
-        }
-
-        for (int val : memo) {
-            if(val != 0)
+    private boolean empty(int[] pmemo) {
+        for (int i : pmemo) {
+            if (i != 0)
                 return false;
         }
         return true;
     }
+
 }
