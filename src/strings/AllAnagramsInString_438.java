@@ -28,13 +28,18 @@ public class AllAnagramsInString_438 {
             pmemo[p.charAt(i) - 'a']++;
         }
 
+        int count = p.length();
         for (int i = 0; i < slen; i++) {
-            pmemo[s.charAt(i) - 'a']--;
+            if ( pmemo[s.charAt(i) - 'a']-- >=1)
+                count--;
+
             if (i >= plen) {
-                pmemo[s.charAt(i - plen) - 'a']++;
+                if (pmemo[s.charAt(i - plen) - 'a']++  >=0)
+                    count++;
             }
+
             if (i >= plen - 1) {
-                if (empty(pmemo))
+                if (count == 0)
                     result.add(i + 1 - plen);
             }
         }
