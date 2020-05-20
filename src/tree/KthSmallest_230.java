@@ -14,24 +14,24 @@ public class KthSmallest_230 {
     }
 
 
+    int i = 1;
     public int kthSmallest(TreeNode root, int k) {
-        return kthSmallest(root, k , new AtomicInteger(1));
+        return helper(root, k);
     }
 
-    public int kthSmallest(TreeNode node, int k, AtomicInteger i) {
+    public int helper(TreeNode node, int k) {
         if (node == null)
             return -1;
 
-
-        int r = kthSmallest(node.left, k, i);
+        int r = helper(node.left, k);
         if (r != -1)
             return r;
 
-        if (i.get() == k)
+        if (i == k)
             return node.val;
-        i.incrementAndGet();
+        i++;
 
-        r = kthSmallest(node.right, k, i);
+        r = helper(node.right, k);
         return r;
     }
 }
