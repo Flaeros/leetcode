@@ -39,4 +39,10 @@ public class TreeNode {
 
         return node;
     }
+
+    public static String print(TreeNode node) {
+        if (node == null)
+            return "";
+        return print(node.left) + ", " + node.val + ", " + print(node.right);
+    }
 }
