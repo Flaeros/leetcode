@@ -1,5 +1,8 @@
 package tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import static array.MaximalSquare_221.printDim;
 
 public class CourseSchedule_207 {
@@ -11,6 +14,42 @@ public class CourseSchedule_207 {
     }
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int[][] graph = new int[numCourses][numCourses]; // i -> j
+        int[] incoming = new int[numCourses];
+
+        for (int i = 0; i < prerequisites.length; i++) {
+            int course = prerequisites[i][0];
+            int dependency = prerequisites[i][1];
+            if (graph[dependency][course] == 0)
+                incoming[course]++; //duplicate case
+            graph[dependency][course] = 1;
+        }
+
+        int count = 0;
+
+        Queue<Integer> q = new LinkedList<>();
+
+
+        for (int i = 0; i < incoming.length; i++) {
+            if (incoming[i] == 0) {
+                q.offer(i);
+            }
+        }
+
+        while (!q.isEmpty()) {
+            Integer course = q.poll();
+            count++;
+
+            for (int i = 0; i < numCourses; i++) {
+                if (graph[course][i] == 1 && --incoming[i] == 0)
+                    q.offer(i);
+            }
+        }
+
+        return count == numCourses;
+    }
+
+    public boolean canFinishDfs(int numCourses, int[][] prerequisites) {
 
         int[][] graph = new int[numCourses][numCourses];
 
