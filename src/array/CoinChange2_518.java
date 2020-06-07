@@ -7,7 +7,7 @@ import static array.MaximalSquare_221.printDim;
 public class CoinChange2_518 {
 
     public static void main(String[] args) {
-        System.out.println(new CoinChange2_518().change(5, new int[]{1, 2, 5}));
+        System.out.println(new CoinChange2_518().change2(5, new int[]{1, 2, 5}));
         System.out.println(new CoinChange2_518().change(3, new int[]{2}));
         System.out.println(new CoinChange2_518().change(10, new int[]{10}));
     }
@@ -17,7 +17,9 @@ public class CoinChange2_518 {
         reverse(coins);
 
         int[][] dp = new int[amount + 1][coins.length];
-        return change2(amount, coins, 0, dp);
+        int ways = change2(amount, coins, 0, dp);
+        System.out.println(printDim(dp));
+        return ways;
     }
 
     public int change(int amount, int[] coins) {
