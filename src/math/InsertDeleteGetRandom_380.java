@@ -2,7 +2,7 @@ package math;
 
 import java.util.*;
 
-public class InsertDeleteGetRandom_ {
+public class InsertDeleteGetRandom_380 {
 
     public static void main(String[] args) {
         // Init an empty set.
