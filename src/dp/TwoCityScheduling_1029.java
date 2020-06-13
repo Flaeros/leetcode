@@ -1,4 +1,4 @@
-package array;
+package dp;
 
 import static array.MaximalSquare_221.printDim;
 
