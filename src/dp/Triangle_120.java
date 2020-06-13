@@ -1,6 +1,5 @@
 package dp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +16,16 @@ public class Triangle_120 {
     }
 
     public int minimumTotal(List<List<Integer>> triangle) {
+        int[] dp = new int[triangle.size() + 1];
+        for (int i = triangle.size() - 1; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);
+            }
+        }
+        return dp[0];
+    }
+
+    public int minimumTotalTop(List<List<Integer>> triangle) {
         if (triangle.size() == 0)
             return 0;
         Integer[] curr = new Integer[2];
@@ -29,7 +38,7 @@ public class Triangle_120 {
                 if (curr[j] != null)
                     curr[j] = Math.min(curr[j], val + next.get(j));
                 else
-                    curr[j] =  val + next.get(j);
+                    curr[j] = val + next.get(j);
                 curr[j + 1] = val + next.get(j + 1);
             }
             pre = Arrays.asList(curr);
