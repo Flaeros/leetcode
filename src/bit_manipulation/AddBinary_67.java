@@ -1,10 +1,10 @@
 package bit_manipulation;
 
-public class AddBinary {
+public class AddBinary_67 {
 
     public static void main(String[] args) {
-        System.out.println(new AddBinary().addBinary("1010", "1011")); //"10101"
-        System.out.println(new AddBinary().addBinary("11", "1")); //"100"
+        System.out.println(new AddBinary_67().addBinary("1010", "1011")); //"10101"
+        System.out.println(new AddBinary_67().addBinary("11", "1")); //"100"
     }
 
     public String addBinary(String a, String b) {
