@@ -44,4 +44,17 @@ public class ListNode {
 
         n.next = end;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ListNode node = this;
+        while (node != null) {
+            sb.append(node.val);
+            node = node.next;
+            if (node != null)
+                sb.append("->");
+        }
+        return sb.toString();
+    }
 }
