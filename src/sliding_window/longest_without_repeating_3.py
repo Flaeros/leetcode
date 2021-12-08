@@ -11,22 +11,18 @@
 
 class Solution(object):
     def lengthOfLongestSubstring(self, sequence):
-        dict = set()
+        chars = set()
         result = 0
         window_start = 0
 
         for window_end, c in enumerate(sequence):
-            if c in dict:
-                while c != sequence[window_start]:
-                    dict.remove(sequence[window_start])
-                    window_start += 1
+            while c in chars:
+                chars.remove(sequence[window_start])
+                window_start += 1
 
-                if c == sequence[window_start]:
-                    window_start += 1
+            chars.add(c)
 
-            if c not in dict:
-                dict.add(c)
-                result = max(result, window_end - window_start  + 1)
+            result = max(result, window_end - window_start + 1)
 
         return result
 
@@ -37,7 +33,7 @@ class Solution(object):
 # max = 3
 # current = 3
 
-print(Solution().lengthOfLongestSubstring("hhtekvlurjuufladcd"))  # 3
+print(Solution().lengthOfLongestSubstring("hhtekvlurjuufladcd"))  # 9
 print(Solution().lengthOfLongestSubstring("abcabcbb"))  # 3
 print(Solution().lengthOfLongestSubstring("abcbbcbb"))  # 3
 print(Solution().lengthOfLongestSubstring("dvdf"))  # 3
