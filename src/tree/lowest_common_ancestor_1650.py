@@ -9,6 +9,43 @@ class Node:
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        ph = self.get_height(p)
+        qh = self.get_height(q)
+
+        if qh > ph:
+            p, q = q, p
+            ph, qh = qh, ph
+
+        while ph != qh:
+            ph -= 1
+            p = p.parent
+
+        while p != q:
+            p = p.parent
+            q = q.parent
+        return p
+
+    def get_height(self, p: Node) -> int:
+        height = 0
+        while p:
+            height += 1
+            p = p.parent
+        return height
+
+    def lowestCommonAncestor2(self, p: 'Node', q: 'Node') -> 'Node':
+        visited = set()
+        node = p
+        while node:
+            visited.add(node)
+            node = node.parent
+
+        node = q
+        while node:
+            if node in visited:
+                return node
+            node = node.parent
+
+    def lowestCommonAncestor3(self, p: 'Node', q: 'Node') -> 'Node':
         p_anc, q_anc = [], []
         node = p
         while node is not None:
