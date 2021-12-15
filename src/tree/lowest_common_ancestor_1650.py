@@ -73,22 +73,6 @@ class Solution:
 
         return None
 
-
-def tree_from_array(arr):
-    return tree_from_parent(arr, 0, None)
-
-
-def tree_from_parent(arr, index, parent):
-    if index >= len(arr) or arr[index] is None:
-        return None
-
-    node = Node(arr[index])
-    node.parent = parent
-    node.left = tree_from_parent(arr, index * 2 + 1, node)
-    node.right = tree_from_parent(arr, index * 2 + 2, node)
-    return node
-
-
 def get_depth(node):
     if node is None:
         return 0
@@ -106,6 +90,19 @@ def get_depth(node):
 
     return result
 
+def tree_from_array(arr):
+    return tree_from_parent(arr, 0, None)
+
+
+def tree_from_parent(arr, index, parent):
+    if index >= len(arr) or arr[index] is None:
+        return None
+
+    node = Node(arr[index])
+    node.parent = parent
+    node.left = tree_from_parent(arr, index * 2 + 1, node)
+    node.right = tree_from_parent(arr, index * 2 + 2, node)
+    return node
 
 root: Node = tree_from_array([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4])
 print(Solution().lowestCommonAncestor(root.left, root.right).val)
