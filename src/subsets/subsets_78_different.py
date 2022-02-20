@@ -1,22 +1,26 @@
+# exclude/include
 from typing import List
 
-
-#discuss all subset/perm/comb examples
-#https://leetcode.com/problems/subsets/discuss/27281/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         subsets = []
         self.find_subsets_rec(nums, subsets, [], 0)
+        subsets.append([])
         return subsets
 
     def find_subsets_rec(self, nums, subsets, subset, index):
-        subsets.append(subset.copy())
+        if len(nums) <= index:
+            return
 
-        for i in range(index, len(nums)):
-            subset.append(nums[i])
-            self.find_subsets_rec(nums, subsets, subset, i + 1)
-            subset.pop()
+        # exclude
+        self.find_subsets_rec(nums, subsets, subset, index + 1)
+
+        # include
+        subset.append(nums[index])
+        subsets.append(subset.copy())
+        self.find_subsets_rec(nums, subsets, subset, index + 1)
+        subset.pop()
 
 
 def main():
