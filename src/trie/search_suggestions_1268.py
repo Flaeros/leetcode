@@ -29,7 +29,6 @@ class SolutionTrie(object):
         self.root = {}
 
     def build_trie(self, products):
-        products.sort()
         for product in products:
             current = self.root
             for char in product:
@@ -37,6 +36,7 @@ class SolutionTrie(object):
             current[self.end] = self.end
 
     def suggestedProducts(self, products, searchWord):
+        products.sort()
         self.build_trie(products)
 
         result = []
@@ -75,7 +75,7 @@ class SolutionTrie(object):
 
 
 print(SolutionSimple().suggestedProducts(products=["mobile", "mouse", "moneypot", "monitor", "mousepad"],
-                                       searchWord="mouse"))
+                                         searchWord="mouse"))
 print(SolutionSimple().suggestedProducts(["havana"], "tatiana"))
 
 print(SolutionTrie().suggestedProducts(products=["mobile", "mouse", "moneypot", "monitor", "mousepad"],
