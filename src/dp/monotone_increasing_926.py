@@ -10,6 +10,13 @@ class Solution(object):
         for char in s:
             p.append(int(char) + p[-1])
 
+
+        for i in range(3):
+            for j in range(i, -1, -1):
+                print(i)
+                print(j)
+                print("-")
+
         result = n
         for i in range(len(p)):
             result = min(result, p[i] + n - i - (p[-1] - p[i]))
