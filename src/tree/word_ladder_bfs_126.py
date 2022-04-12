@@ -12,42 +12,48 @@ def oneCharDifference(prev, next):
     return difference == 1
 
 
-def canBeTransformed(start, end, words):
-    adjacency = defaultdict(set)
+class Solution:
+    def ladderLength(self, start, end, words):
 
-    words.append(end)
-    words.append(start)
+        adjacency = defaultdict(set)
 
-    for prev in words:
-        for next in words:
-            if prev == next:
-                continue
+        words.append(end)
+        words.append(start)
 
-            if oneCharDifference(prev, next):
-                adjacency[prev].add(next)
-                adjacency[next].add(prev)
+        for prev in words:
+            for next in words:
+                if prev == next:
+                    continue
 
-    visited = set()
+                if oneCharDifference(prev, next):
+                    adjacency[prev].add(next)
+                    adjacency[next].add(prev)
 
-    queue = deque([(start, 1)])
+        visited = set()
 
-    while queue:
-        word, length = queue.pop()
+        queue = deque([(start, 1)])
 
-        if end in adjacency[word]:
-            return length + 1
+        while queue:
+            word, length = queue.pop()
 
-        visited.add(word)
+            if end in adjacency[word]:
+                return length + 1
 
-        for next in adjacency[word]:
-            if next not in visited:
-                queue.appendleft((next, length + 1))
+            visited.add(word)
 
-    return 0
+            for next in adjacency[word]:
+                if next not in visited:
+                    queue.appendleft((next, length + 1))
+
+        return 0
 
 
-print(canBeTransformed(start="hit",
-                       end="cog",
-                       words=["hix", "dog", "log", "hot", "dot", "lot"]))
+print(Solution().ladderLength("hit",
+                              "cog",
+                              ["hot", "dot", "dog", "lot", "log"]))
+
+print(Solution().ladderLength(start="hit",
+                              end="cog",
+                              words=["hix", "dog", "log", "hot", "dot", "lot"]))
 
 # "hit" -> "hot" -> "dot" -> "dog" -> cog"
